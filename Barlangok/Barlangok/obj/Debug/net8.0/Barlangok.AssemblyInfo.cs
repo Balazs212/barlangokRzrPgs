@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("f4de2b24-e21b-453a-8294-ac8ace656a06")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Barlangok")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc6d3a9c2e6fc910b0f0e7f4df8f464268c04624")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ec7fd6c06c566f51c94331e914b5560e65a92d1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Barlangok")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Barlangok")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

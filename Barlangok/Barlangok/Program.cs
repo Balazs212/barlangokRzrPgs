@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Barlangok.Data;
 namespace Barlangok
 {
     public class Program
@@ -5,6 +8,8 @@ namespace Barlangok
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<BarlangokContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("BarlangokContext")));
 
             // Add services to the container.
             builder.Services.AddRazorPages();
