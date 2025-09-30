@@ -1,29 +1,38 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Barlangok.Models;
+using Barlangok.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Barlangok.Data;
-using Barlangok.Models;
 
 namespace Barlangok.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly Barlangok.Data.BarlangokContext _context;
+        private readonly BarlangokContext _context;
 
-        public IndexModel(Barlangok.Data.BarlangokContext context)
+        public IndexModel(BarlangokContext context)
         {
             _context = context;
         }
 
-        public IList<Barlang> Barlang { get;set; } = default!;
+        public IList<Barlang> Barlangok { get; set; } = new List<Barlang>();
+
+        [BindProperty(SupportsGet = true)]
+        public string TelepulesFilter { get; set; }
 
         public async Task OnGetAsync()
         {
-            Barlang = await _context.Barlang.ToListAsync();
+            var query = _context.Barlang.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(TelepulesFilter))
+            {
+                query = query.Where(b => b.Telepules.Contains(TelepulesFilter));
+            }
+
+            Barlangok = await query.ToListAsync();
         }
     }
 }

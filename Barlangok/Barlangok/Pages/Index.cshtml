@@ -2,59 +2,48 @@
 @model Barlangok.Pages.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Barlangok List";
 }
 
-<h1>Index</h1>
+<h1>Barlangok List</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<a asp-page="./Create" class="btn btn-success mb-3">Új barlang hozzáadása</a>
+
+<form method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="telepulesFilter" class="mr-2">Település:</label>
+        <input type="text" id="telepulesFilter" name="TelepulesFilter" value="@Model.TelepulesFilter" class="form-control mr-2" />
+        <button type="submit" class="btn btn-primary">Szűrés</button>
+        <a asp-page="./Index" class="btn btn-secondary ml-2">Összes</a>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Barlang[0].Nev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barlang[0].Hossz)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barlang[0].Kiterjedes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barlang[0].Magassag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barlang[0].Telepules)
-            </th>
+            <th>Név</th>
+            <th>Hossz</th>
+            <th>Kiterjedés</th>
+            <th>Magasság</th>
+            <th>Település</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Barlang) {
+    @foreach (var barlang in Model.Barlangok)
+    {
         <tr>
+            <td>@barlang.Nev</td>
+            <td>@barlang.Hossz</td>
+            <td>@barlang.Kiterjedes</td>
+            <td>@barlang.Magassag</td>
+            <td>@barlang.Telepules</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hossz)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kiterjedes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Magassag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telepules)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Details" asp-route-id="@barlang.Id">Részletek</a> |
+                <a asp-page="./Edit" asp-route-id="@barlang.Id">Szerkesztés</a> |
+                <a asp-page="./Delete" asp-route-id="@barlang.Id">Törlés</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
