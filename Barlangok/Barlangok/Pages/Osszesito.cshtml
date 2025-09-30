@@ -1,0 +1,24 @@
+﻿@page
+@model Barlangok.Pages.OsszesitoModel
+@{
+    ViewData["Title"] = "Összesítő";
+}
+
+<h2>Települések barlangjainak száma</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Település</th>
+            <th>Barlangok száma</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Osszesites)
+    {
+        <tr>
+            <td>@item.Varos</td>
+            <td>@item.BarlangCount</td>
+        </tr>
+    }
+    </tbody>
+</table>
